@@ -5,7 +5,6 @@ import pandas as pd
 from datetime import datetime, timedelta
 from PIL import Image, ImageDraw, ImageFont
 import smtplib
-import sys
 from email.message import EmailMessage
 
 # --- 1. CONFIGURATIE VIA GITHUB SECRETS ---
@@ -19,29 +18,44 @@ TABBLAD_NAAM = 'Seizoen 25 - 26'
 
 EMAIL_AFZENDER = os.environ.get("GMAIL_USER")
 EMAIL_WACHTWOORD = os.environ.get("GMAIL_PASSWORD")
-# Enkel Johan voor de testfase
-EMAIL_ONTVANGERS = ["johan.jouck@hotmail.com"]
+
+# AANGEPASTE ONTVANGERSLIJST
+EMAIL_ONTVANGERS = [
+    "brightadiyia@gmail.com", "cedricpatyn@gmail.com", "daan_vananderoye@hotmail.com", 
+    "johan.jouck@hotmail.com", "janoschkrzywania@hotmail.com", "joris.piette@hotmail.com", 
+    "jort_vananderoye@hotmail.be", "maartenkenens1988@hotmail.com", 
+    "maartenvandercammen_@hotmail.com", "maxim_patyn@hotmail.com", 
+    "philippejaenen@outlook.com", "renaat.grossar@gmail.com", "robin.grossar@telenet.be", 
+    "robinoptroodt1@hotmail.com", "rubentheuwen@gmail.com", "simonoptroodt@hotmail.com", 
+    "tibo.geuns@hotmail.com", "tom.carlens@telenet.be", "t_vanhoyland@hotmail.com", 
+    "jansgert@hotmail.com", "janlambrigts@gmail.com", "toonsjongers@outlook.com", 
+    "lucien.jouck@telenet.be", "roxane_manirakiza@hotmail.com"
+]
 
 LOGO_PAD = "logo.png" 
+
 MAANDEN_NL = {1: "JANUARI", 2: "FEBRUARI", 3: "MAART", 4: "APRIL", 5: "MEI", 6: "JUNI", 7: "JULI", 8: "AUGUSTUS", 9: "SEPTEMBER", 10: "OKTOBER", 11: "NOVEMBER", 12: "DECEMBER"}
 
 # Kleuren
-CLR_BG = (15, 23, 42)      
-CLR_CARD = (30, 41, 59)    
+CLR_BG = (15, 23, 42)       
+CLR_CARD = (30, 41, 59)     
 CLR_ACCENT = (250, 204, 21) 
-CLR_W = (34, 197, 94)      
-CLR_G = (249, 115, 22)     
-CLR_V = (239, 68, 68)      
+CLR_W = (34, 197, 94)       
+CLR_G = (249, 115, 22)      
+CLR_V = (239, 68, 68)       
 CLR_TEXT = (241, 245, 249)
 
 def verstuur_mail(bestandsnaam, pad, maand_naam):
-    print(f">>> Versturen naar {EMAIL_ONTVANGERS}...")
+    print(f">>> Versturen naar {len(EMAIL_ONTVANGERS)} ontvangers...")
     msg = EmailMessage()
     msg['Subject'] = f"📊 Maandrapport FC Ambras: {maand_naam}"
     msg['From'] = EMAIL_AFZENDER
+    # Bcc gebruiken is netter bij grote groepen (zodat niet iedereen elkaars mail ziet), 
+    # maar 'To' werkt ook als dat de wens is. Hier staat het nu in 'To'.
     msg['To'] = ", ".join(EMAIL_ONTVANGERS)
     
-    msg.set_content(f"Dag Johan,\n\nHierbij het volledige grafische maandrapport van {maand_naam}.\n\nFC Ambras is wereldklas!\n\nMet sportieve groet,\nAmbrasbot")
+    # AANGEPASTE TEKST
+    msg.set_content(f"Dag beste vrienden van Ambras,\n\nHierbij het volledige grafische maandrapport van {maand_naam}.\n\nFC Ambras is wereldklas!\n\nMet sportieve groet,\nAmbrasbot")
 
     with open(pad, 'rb') as f:
         msg.add_attachment(f.read(), maintype='image', subtype='png', filename=bestandsnaam)
@@ -104,7 +118,7 @@ def genereer_maandrapport():
     img = Image.new('RGB', (w, h), color=CLR_BG)
     draw = ImageDraw.Draw(img)
     
-    # Font pad voor Linux (GitHub Actions)
+    # Font pad
     f_path = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
     try:
         title_f, head_f, stat_f, text_f, prog_f = ImageFont.truetype(f_path, 60), ImageFont.truetype(f_path, 38), ImageFont.truetype(f_path, 90), ImageFont.truetype(f_path, 28), ImageFont.truetype(f_path, 25)
