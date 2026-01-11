@@ -94,21 +94,32 @@ def genereer_maandrapport():
 
     # Data Verwerken
     df['Datum'] = pd.to_datetime(df['Datum'], dayfirst=True, errors='coerce')
-    df['goals'] = pd.to_numeric(df['goals'], errors='coerce')
-    df['goals tegen'] = pd.to_numeric(df['goals tegen'], errors='coerce')
-
-    df_nu = df[(df['Datum'] >= start_rapport) & (df['Datum'] <= eind_rapport)].dropna(subset=['goals']).copy()
+    
+    # Filter de matchen van de rapportmaand
+    df_nu = df[(df['Datum'] >= start_rapport) & (df['Datum'] <= eind_rapport)].copy()
     
     winst, gelijk, verlies, voor, tegen = 0, 0, 0, 0, 0
     matchen = []
+
     for _, row in df_nu.iterrows():
-        g, gt = int(row['goals']), int(row['goals tegen'])
-        if g > gt: winst += 1
-        elif g == gt: gelijk += 1
-        else: verlies += 1
-        voor += g; tegen += gt
-        score = f"{g} - {gt}" if "Ambras" in str(row['Thuisploeg']) else f"{gt} - {g}"
-        matchen.append(f"{row['Datum'].strftime('%d/%m')} | {row['Thuisploeg']}  {score}  {row['Uitploeg']}")
+        score_val = str(row['goals']).strip()
+        tegen_val = str(row['goals tegen']).strip()
+
+        # Check of de match geannuleerd is (als er een / staat)
+        if score_val == "/" or tegen_val == "/":
+            score_display = "AFGELAST / GEANNULEERD"
+            matchen.append(f"{row['Datum'].strftime('%d/%m')} | {row['Thuisploeg']} - {row['Uitploeg']} ({score_display})")
+        
+        # Alleen verwerken als er daadwerkelijk getallen staan
+        elif score_val.isdigit() and tegen_val.isdigit():
+            g, gt = int(score_val), int(tegen_val)
+            if g > gt: winst += 1
+            elif g == gt: gelijk += 1
+            else: verlies += 1
+            voor += g; tegen += gt
+            
+            score_tekst = f"{g} - {gt}" if "Ambras" in str(row['Thuisploeg']) else f"{gt} - {g}"
+            matchen.append(f"{row['Datum'].strftime('%d/%m')} | {row['Thuisploeg']}  {score_tekst}  {row['Uitploeg']}")
 
     df_volg = df[(df['Datum'] >= start_programma) & (df['Datum'] <= eind_programma)]
     prog = [f"{r['Datum'].strftime('%d/%m')} - {r['Thuisploeg']} vs {r['Uitploeg']}" for _, r in df_volg.iterrows() if pd.notnull(r['Datum'])]
@@ -188,4 +199,5 @@ def genereer_maandrapport():
 
 if __name__ == "__main__":
     genereer_maandrapport()
+
 
