@@ -50,11 +50,9 @@ def verstuur_mail(bestandsnaam, pad, maand_naam):
     msg = EmailMessage()
     msg['Subject'] = f"📊 Maandrapport FC Ambras: {maand_naam}"
     msg['From'] = EMAIL_AFZENDER
-    # Bcc gebruiken is netter bij grote groepen (zodat niet iedereen elkaars mail ziet), 
-    # maar 'To' werkt ook als dat de wens is. Hier staat het nu in 'To'.
+    # To wordt hier gebruikt zoals gevraagd
     msg['To'] = ", ".join(EMAIL_ONTVANGERS)
     
-    # AANGEPASTE TEKST
     msg.set_content(f"Dag beste vrienden van Ambras,\n\nHierbij het maandrapport van {maand_naam}.\n\nFC Ambras is wereldklas!\n\nMet sportieve groet,\nAmbrasbot")
 
     with open(pad, 'rb') as f:
@@ -95,22 +93,25 @@ def genereer_maandrapport():
     # Data Verwerken
     df['Datum'] = pd.to_datetime(df['Datum'], dayfirst=True, errors='coerce')
     
-    # Filter de matchen van de rapportmaand
+    # Filter de matchen van de rapportmaand (dus verleden tijd)
     df_nu = df[(df['Datum'] >= start_rapport) & (df['Datum'] <= eind_rapport)].copy()
     
     winst, gelijk, verlies, voor, tegen = 0, 0, 0, 0, 0
     matchen = []
 
     for _, row in df_nu.iterrows():
+        # Waarden ophalen en witruimte verwijderen
         score_val = str(row['goals']).strip()
         tegen_val = str(row['goals tegen']).strip()
 
-        # Check of de match geannuleerd is (als er een / staat)
-        if score_val == "/" or tegen_val == "/":
+        # LOGICA AANGEPAST:
+        # Als score en tegenscore LEEG zijn (""), beschouwen we dit als geannuleerd/afgelast
+        # Omdat df_nu al gefilterd is op de rapportmaand, weten we dat de datum in het verleden ligt.
+        if score_val == "" and tegen_val == "":
             score_display = "AFGELAST / GEANNULEERD"
             matchen.append(f"{row['Datum'].strftime('%d/%m')} | {row['Thuisploeg']} - {row['Uitploeg']} ({score_display})")
         
-        # Alleen verwerken als er daadwerkelijk getallen staan
+        # Als er wel cijfers staan, verwerken we de statistieken
         elif score_val.isdigit() and tegen_val.isdigit():
             g, gt = int(score_val), int(tegen_val)
             if g > gt: winst += 1
@@ -199,5 +200,3 @@ def genereer_maandrapport():
 
 if __name__ == "__main__":
     genereer_maandrapport()
-
-
