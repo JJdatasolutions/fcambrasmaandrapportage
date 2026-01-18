@@ -21,7 +21,7 @@ EMAIL_WACHTWOORD = os.environ.get("GMAIL_PASSWORD")
 
 # AANGEPASTE ONTVANGERSLIJST
 EMAIL_ONTVANGERS = [
-    "brightadiyia@gmail.com", "cedricpatyn@gmail.com", "daan_vananderoye@hotmail.com", 
+    "brightadiyia@gmail.com", "pieter_conjaerts@hotmail.com", "cedricpatyn@gmail.com", "daan_vananderoye@hotmail.com", 
     "johan.jouck@hotmail.com", "janoschkrzywania@hotmail.com", "joris.piette@hotmail.com", 
     "jort_vananderoye@hotmail.be", "maartenkenens1988@hotmail.com", 
     "maartenvandercammen_@hotmail.com", "maxim_patyn@hotmail.com", 
@@ -200,3 +200,4 @@ def genereer_maandrapport():
 
 if __name__ == "__main__":
     genereer_maandrapport()
+
