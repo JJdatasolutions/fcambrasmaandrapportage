@@ -25,7 +25,15 @@ EMAIL_WACHTWOORD = os.environ.get("GMAIL_PASSWORD")
 
 # Ontvangerslijst
 EMAIL_ONTVANGERS = [
-        "johan.jouck@hotmail.com"
+    "brightadiyia@gmail.com", "pieter_conjaerts@hotmail.com", "cedricpatyn@gmail.com", "daan_vananderoye@hotmail.com", 
+    "johan.jouck@hotmail.com", "janoschkrzywania@hotmail.com", "joris.piette@hotmail.com", 
+    "jort_vananderoye@hotmail.be", "maartenkenens1988@hotmail.com", 
+    "maartenvandercammen_@hotmail.com", "maxim_patyn@hotmail.com", 
+    "philippejaenen@outlook.com", "renaat.grossar@gmail.com", "robin.grossar@telenet.be", 
+    "robinoptroodt1@hotmail.com", "rubentheuwen@gmail.com", "simonoptroodt@hotmail.com", 
+    "tibo.geuns@hotmail.com", "tom.carlens@telenet.be", "t_vanhoyland@hotmail.com", 
+    "jansgert@hotmail.com", "janlambrigts@gmail.com", "toonsjongers@outlook.com", 
+    "lucien.jouck@telenet.be", "roxane_manirakiza@hotmail.com"
 ]
 
 MAANDEN_NL = {1: "JANUARI", 2: "FEBRUARI", 3: "MAART", 4: "APRIL", 5: "MEI", 6: "JUNI", 7: "JULI", 8: "AUGUSTUS", 9: "SEPTEMBER", 10: "OKTOBER", 11: "NOVEMBER", 12: "DECEMBER"}
@@ -246,4 +254,5 @@ def genereer_maandrapport():
 
 if __name__ == "__main__":
     genereer_maandrapport()
+
 
