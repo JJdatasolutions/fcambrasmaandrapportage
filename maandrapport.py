@@ -28,7 +28,7 @@ EMAIL_ONTVANGERS = [
     "brightadiyia@gmail.com", "pieter_conjaerts@hotmail.com", "cedricpatyn@gmail.com", "daan_vananderoye@hotmail.com", 
     "johan.jouck@hotmail.com", "janoschkrzywania@hotmail.com", "joris.piette@hotmail.com", 
     "jort_vananderoye@hotmail.be", "maartenkenens1988@hotmail.com", 
-    "maartenvandercammen_@hotmail.com", "maxim_patyn@hotmail.com", 
+    "maartenvandercammen_@hotmail.com", "maxim_patyn@hotmail.com", "pietkusters@hotmail.com",
     "philippejaenen@outlook.com", "renaat.grossar@gmail.com", "robin.grossar@telenet.be", 
     "robinoptroodt1@hotmail.com", "rubentheuwen@gmail.com", "simonoptroodt@hotmail.com", 
     "tibo.geuns@hotmail.com", "tom.carlens@telenet.be", "t_vanhoyland@hotmail.com", 
