@@ -18,7 +18,7 @@ def get_gspread_client():
 
 GOOGLE_SHEET_ID = '1oNNkeY5Uzgna7F3D2ZDIMbdEWwZL7mTxwPt9kR-p6Ow'
 TABBLAD_MATCHES = 'Seizoen 26 - 27'
-TABBLAD_STATS = 'gamestats'
+TABBLAD_STATS = 'gamestats 26 - 27'
 
 EMAIL_AFZENDER = os.environ.get("GMAIL_USER")
 EMAIL_WACHTWOORD = os.environ.get("GMAIL_PASSWORD")
