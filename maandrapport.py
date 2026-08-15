@@ -32,7 +32,7 @@ EMAIL_ONTVANGERS = [
     "philippejaenen@outlook.com", "renaat.grossar@gmail.com", "robin.grossar@telenet.be", 
     "robinoptroodt1@hotmail.com", "rubentheuwen@gmail.com", "simonoptroodt@hotmail.com", 
     "tibo.geuns@hotmail.com", "tom.carlens@telenet.be", "t_vanhoyland@hotmail.com", 
-    "jansgert@hotmail.com", "janlambrigts@gmail.com", "toonsjongers@outlook.com", 
+    "jansgert@hotmail.com", "jarne11@hotmail.com", "Milanhouben3@hotmail.com", "mettevd.2005@gmail.com", "janlambrigts@gmail.com", "toonsjongers@outlook.com", 
     "lucien.jouck@telenet.be", "roxane_manirakiza@hotmail.com"
 ]
 
