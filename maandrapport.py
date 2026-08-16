@@ -27,7 +27,7 @@ EMAIL_WACHTWOORD = os.environ.get("GMAIL_PASSWORD")
 EMAIL_ONTVANGERS = [
     "brightadiyia@gmail.com", "pieter_conjaerts@hotmail.com", "cedricpatyn@gmail.com", "daan_vananderoye@hotmail.com", 
     "johan.jouck@hotmail.com", "janoschkrzywania@hotmail.com", "joris.piette@hotmail.com", 
-    "jort_vananderoye@hotmail.be", "maartenkenens1988@hotmail.com", 
+    "jort_vananderoye@hotmail.be", "maartenkenens1988@hotmail.com", "saidmaatich2@gmail.com", "Tobevananderoye23@gmail.com",
     "maartenvandercammen_@hotmail.com", "maxim_patyn@hotmail.com", "pietkusters@hotmail.com",
     "philippejaenen@outlook.com", "renaat.grossar@gmail.com", "robin.grossar@telenet.be", 
     "robinoptroodt1@hotmail.com", "rubentheuwen@gmail.com", "simonoptroodt@hotmail.com", 
